@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>patmal.course.enigma</groupId>
+    <artifactId>enigma-aggregator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>console</module>
+        <module>machine</module>
+        <module>loader</module>
+        <module>engine</module>
+        <module>archive</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Centralize JAXB versions -->
+        <jaxb.api.version>2.3.1</jaxb.api.version>
+        <jaxb.runtime.version>2.3.2</jaxb.runtime.version>
+        <activation.version>1.2.0</activation.version>
+    </properties>
+
+    <!-- JAXB dependencies for Java 9+ (JDK 21) since JAXB was removed from the JDK -->
+    <!-- Declared at parent so all modules can use JAXB without repeating versions -->
+    <dependencies>
+        <!-- API with javax.* packages to match current imports in the codebase -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.api.version}</version>
+        </dependency>
+
+        <!-- Runtime implementation (includes core + txw2) -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb.runtime.version}</version>
+        </dependency>
+
+        <!-- Activation Framework for Java 9+ when using javax.* JAXB -->
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>javax.activation</artifactId>
+            <version>${activation.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
