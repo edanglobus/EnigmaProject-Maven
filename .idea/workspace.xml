@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7bf575a-90f8-4cdb-9cd4-648405cc635e" name="Changes" comment="rabuild enigma to maven framework">
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/EnigmaArchive.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/history/ConfigurationStats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/history/ProcessedString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/EnigmaConfigMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/EnigmaJaxbLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/WiredPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/config/EnigmaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/config/PositioningConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/config/ReflectMappingConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/config/ReflectorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/jaxb/config/RotorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/storage/PartsConfigValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/storage/PartsStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/storage/StorageManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/storage/reflector/ReflectorStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaArchive/src/storage/rotor/RotorStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/EnigmaComponents.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/WiringCables/Wiring.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/WiringCables/WiringReflactor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/WiringCables/WiringRotor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/engine/Engine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/engine/rotorsManagers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/parts/CipherMapable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/parts/Reflector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/parts/Rotor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/parts/Roundable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/hardware/parts/SystemChars.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/software/config/AutoConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/software/config/MachineConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaComponents/src/software/config/ManualConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaMachine/EnigmaMachine.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaMachine/src/machine/Machine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaMachine/src/machine/MachineState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnigmaMachineProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-ABC-even-length.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-at-least-three-rotors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-duplicate-id.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-duplicate-mapping-right-column.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-duplicate-mapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-id-start-from-two.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-id-with-no-holes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-notch-in-range-set0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-notch-in-range-set7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-reflector-dup-id.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-reflector-id-VI.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-reflector-id-have-holes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-reflector-id-start-from-II.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestEnigmaXmls/Test-reflector-input-not-output.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/UI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/src/MachineManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;edanglobus&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/edanglobus/EnigmaProject.git&quot;,
+    &quot;accountId&quot;: &quot;289b1202-b36d-485e-9fd7-585b08e825f3&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="37NvKUIas34ToSSOKy2XpdkhWDc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Merging maven",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/Edan Globus/IdeaProjects/Enigma-Project/engine/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/Edan Globus/IdeaProjects/Enigma-Project/archive/src/main/java/edanglobus/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Edan Globus\IdeaProjects\Enigma-Project\engine\src\main\java" />
+      <recent name="C:\Users\Edan Globus\IdeaProjects\Enigma-Project\engine\src\main\java\components\hardware" />
+      <recent name="C:\Users\Edan Globus\IdeaProjects\Enigma-Project\engine\src\main\java\components" />
+      <recent name="C:\Users\Edan Globus\IdeaProjects\Enigma-Project\archive\src\main\java" />
+      <recent name="C:\Users\Edan Globus\IdeaProjects\Enigma-Project\archive" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="console" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.27812.49" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.27812.49" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7bf575a-90f8-4cdb-9cd4-648405cc635e" name="Changes" comment="" />
+      <created>1766756282300</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766756282300</updated>
+      <workItem from="1766756283650" duration="5229000" />
+      <workItem from="1766761550749" duration="346000" />
+    </task>
+    <task id="LOCAL-00001" summary="rabuild enigma to maven framework">
+      <option name="closed" value="true" />
+      <created>1766760456876</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766760456876</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/maven" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="rabuild enigma to maven framework" />
+    <option name="LAST_COMMIT_MESSAGE" value="rabuild enigma to maven framework" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edanglobus/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/console/src/main/java/edanglobus/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/machine/src/main/java/edanglobus/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/loader/src/main/java/edanglobus/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/engine/src/main/java/edanglobus/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/archive/src/main/java/edanglobus/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
