@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        MachineManager machineManager = new MachineManager();
         Scanner sc = new Scanner(System.in);
+        MachineManager machineManager = new MachineManager(sc);
 
         while (true) {
             System.out.println("""

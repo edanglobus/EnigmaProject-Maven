@@ -23,10 +23,10 @@ public class StorageManager implements software.StorageProvider {
     private RotorStorage RS;
     private ReflectorStorage RFS;
     private String ABC;
+    private int rotorsCount;
     private List<Character>  originalPosition;
     private boolean ValidSupply = false;
     private StorageManager myCopy;
-
 
     public StorageManager(EnigmaJaxbLoader loader) {
        this.supplyLoader = loader;
@@ -78,6 +78,7 @@ public class StorageManager implements software.StorageProvider {
         ECM = new EnigmaConfigMapper(EC);
         PCV = new PartsConfigValidator();
         ABC = EC.getAlphabet();
+        rotorsCount = EC.getRotorsCount();
     }
 
     public void loadSupplyXMLCheckAndBuildStorages(String path) throws Exception {
@@ -88,6 +89,14 @@ public class StorageManager implements software.StorageProvider {
 
      private boolean IsInSupplyRotorID(int id) {
          return RS.containsRotor(id);
+     }
+
+     public int getRotorsCount() {
+         return rotorsCount;
+     }
+
+     public void setRotorsCount(int rotorsCount) {
+         this.rotorsCount = rotorsCount;
      }
 
      private boolean IsInSupplyReflectorID(String id) {

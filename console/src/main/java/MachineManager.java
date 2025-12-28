@@ -16,6 +16,12 @@ import java.util.Scanner;
 
 public class MachineManager {
 
+    private final Scanner scanner;
+
+    public MachineManager(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     private final EnigmaJaxbLoader Loader = new EnigmaJaxbLoader();
     private StorageManager SM = new StorageManager(Loader);
     private Machine enigmaMachine = new Machine();
@@ -24,25 +30,24 @@ public class MachineManager {
     public void order1_readXmlFile() throws Exception {
         try {
             System.out.println("Supply XML path:");
-            Scanner sc = new Scanner(System.in);
-            String path = sc.nextLine().trim(); //to check path
+            String path = scanner.nextLine().trim(); // to check path
             SM.resetUsedIds();
             StorageManager tempSM = new StorageManager(Loader);
             tempSM.loadSupplyXMLCheckAndBuildStorages(path);
             SM = tempSM;
 
             isFileLoaded = true;
+            enigmaMachine.setRotorsCount(SM.getRotorsAmount());
+            enigmaMachine.setAlphabet(SM.getABC());
             System.out.println("File loaded successfully");
-        }
-        catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             throw new Exception("Invalid XML file: " + iae.getMessage());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Failed to load XML file: " + e.getMessage());
         }
     }
 
-    public void order2_showMachineDetails(){
+    public void order2_showMachineDetails() {
         if (!isFileLoaded) {
             System.out.println("XML File Not Loaded, Storage Are Empty!");
         }
@@ -90,25 +95,25 @@ public class MachineManager {
             throw new UnsupportedOperationException("Engine Not Configured Yet - Make Order 3/4 First");
         }
         System.out.print("Write the string you want to encode/decode:\n");
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine().trim().toUpperCase();
-        //start measure time
+        System.out.print("Write the string you want to encode/decode:\n");
+        String input = scanner.nextLine().trim().toUpperCase();
+        // start measure time
         long start = System.nanoTime();
 
         String cipher = enigmaMachine.getEngine().processString(input);
-        //end measure time
+        // end measure time
         long end = System.nanoTime();
 
         System.out.printf("The result is:\n%s\n", cipher);
 
         if (!enigmaMachine.getFullHistory().isEmpty()) {
-           //pull the last configuration stats
+            // pull the last configuration stats
             enigmaMachine.getFullHistory().getLast().addProcessedString(input, cipher, (end - start));
         }
 
     }
 
-    public void order6_restartMachineConfig(){
+    public void order6_restartMachineConfig() {
         if (enigmaMachine.getEngine() == null) {
             throw new UnsupportedOperationException("Engine Not Configured Yet - Make Order 3/4 First");
         }
@@ -119,7 +124,7 @@ public class MachineManager {
         }
     }
 
-    public void order7_showHistory(){
+    public void order7_showHistory() {
         showHistory();
     }
 
@@ -133,13 +138,12 @@ public class MachineManager {
         }
 
         System.out.print("Enter file path for BINARY save: ");
-        Scanner sc = new Scanner(System.in);
-        String filePathName = sc.nextLine().trim();
+        String filePathName = scanner.nextLine().trim();
         String finalFileName = filePathName.endsWith(".dat") ? filePathName : filePathName + ".dat";
         Path filePath = Paths.get(finalFileName);
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath.toFile()))) {
-            enigmaMachine.setAlphabet(SM.getABC());
+            // enigmaMachine.setAlphabet(SM.getABC());
             enigmaMachine.setOriginalPosition(SM.getOriginalPosition());
             enigmaMachine.setCurrentPosition(enigmaMachine.getEngine().getRotorsManagers().getRotorsPosotion());
             oos.writeObject(enigmaMachine);
@@ -147,8 +151,9 @@ public class MachineManager {
             System.out.println("Full machine state saved successfully (BINARY) to: " + filePath.toAbsolutePath());
 
         } catch (NotSerializableException nse) {
-             System.err.println("Serialization Error: A class is missing 'implements Serializable'. Please ensure all required classes (Rotor, Engine, etc.) are marked as serializable.");
-             System.err.println("Error details: " + nse.getMessage());
+            System.err.println(
+                    "Serialization Error: A class is missing 'implements Serializable'. Please ensure all required classes (Rotor, Engine, etc.) are marked as serializable.");
+            System.err.println("Error details: " + nse.getMessage());
         } catch (IOException e) {
             System.err.println("Error saving file: " + e.getMessage());
         }
@@ -156,8 +161,8 @@ public class MachineManager {
 
     public Machine order9_LoadMachine() {
         System.out.print("Enter file path for BINARY load: ");
-        Scanner sc = new Scanner(System.in);
-        String filePathName = sc.nextLine().trim();
+        System.out.print("Enter file path for BINARY load: ");
+        String filePathName = scanner.nextLine().trim();
         String finalFileName = filePathName.endsWith(".dat") ? filePathName : filePathName + ".dat";
         Path filePath = Paths.get(finalFileName);
 
@@ -168,6 +173,7 @@ public class MachineManager {
             SM.setOriginalPosition(newEnigmaMachine.getOriginalPosition());
             List<Integer> currentPositions = newEnigmaMachine.getCurrentPosition();
             newEnigmaMachine.getEngine().getRotorsManagers().setRotorsPosition(currentPositions);
+            SM.setRotorsCount(newEnigmaMachine.getRotorsCount());
             SM.setABC(newEnigmaMachine.getAlphabet());
 
             System.out.println(" Full machine state loaded successfully (BINARY) from: " + filePath.toAbsolutePath());
@@ -184,10 +190,10 @@ public class MachineManager {
         return null; // If loading failed
     }
 
-    public  String getCode(boolean original) {
-       if (enigmaMachine.getEngine() == null) {
-           return "Machine Not Configured Yet - No Code Available";
-       }
+    public String getCode(boolean original) {
+        if (enigmaMachine.getEngine() == null) {
+            return "Machine Not Configured Yet - No Code Available";
+        }
         return '<' +
                 buildRotorString() +
                 '>' +
@@ -200,19 +206,19 @@ public class MachineManager {
 
     }
 
-    public  String buildRotorString(){
+    public String buildRotorString() {
         StringBuilder sb = new StringBuilder();
         Rotor[] rotors = enigmaMachine.getEngine().getRotorsManagers().getRotors();
         int index = rotors.length - 1;
-        for (int i = index; i >=0 ; i--) {
+        for (int i = index; i >= 0; i--) {
             sb.append(rotors[i].getID());
             sb.append(',');
         }
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 
-    public  String buildReflectorString(){
+    public String buildReflectorString() {
         return enigmaMachine.getEngine().getReflectorId();
     }
 

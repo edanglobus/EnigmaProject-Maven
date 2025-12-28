@@ -63,10 +63,10 @@ public class ManualConfig extends MachineConfig {
         storageManager.setOriginalPosition(positions);
         Reflector reflector = askReflector();
 
-
+        int rotorsCount = storageManager.getRotorsCount();
         rotorsManagers manager = new rotorsManagers(rotors.toArray(new Rotor[0]));
         List<Integer> indexOfPositions = manager.MappingInputCharPositionByRightColumnToIndex(positions);
         manager.setRotorsPosition(indexOfPositions);
-        return new Engine(reflector, manager, storageManager.getABC());
+        return new Engine(rotorsCount, reflector, manager, storageManager.getABC());
     }
 }

@@ -26,4 +26,6 @@ public interface StorageProvider {
     String rotorStorageString();
 
     String reflectorStorageString();
+
+    int getRotorsCount();
 }

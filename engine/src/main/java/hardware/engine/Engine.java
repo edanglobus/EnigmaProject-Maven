@@ -13,9 +13,9 @@ public class Engine implements Serializable {
     private int numberOfEncryptions = 0;
 
 
-    public Engine(Reflector reflector, rotorsManagers manager, String alphabet) {
-        if (manager.getRotors().length != 3) {
-            throw new IllegalArgumentException("3 rotors are required to initialize the engine.");
+    public Engine(int rotorsCount, Reflector reflector, rotorsManagers manager, String alphabet) {
+        if (manager.getRotors().length != rotorsCount) {
+            throw new IllegalArgumentException("Exactly " + rotorsCount + " rotors are required to initialize the engine.");
         }
         this.reflector = reflector;
         this.manager = manager;

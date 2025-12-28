@@ -9,23 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Machine implements Serializable {
-    String alphabet;
+    private String alphabet;
+    private int rotorsCount;
     private MachineState state;
     private List<Character> originalPosition;
     private List<Integer> currentPosition;
     private Engine engine;
     private List<ConfigurationStats> fullHistory = new ArrayList<>();
 
+
     public MachineState getState() {
         return state;
+    }
+    public void setAlphabet(String alphabet) {
+        this.alphabet = alphabet;
+    }
+    public void setRotorsCount(int rotorsCount) {
+        this.rotorsCount = rotorsCount;
+    }
+
+    public int getRotorsCount() {
+        return rotorsCount;
     }
 
     public String getAlphabet() {
         return alphabet;
-    }
-
-    public void setAlphabet(String alphabet) {
-        this.alphabet = alphabet;
     }
 
     public List<Integer> getCurrentPosition() {

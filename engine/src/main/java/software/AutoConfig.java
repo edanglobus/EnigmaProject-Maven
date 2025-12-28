@@ -50,20 +50,10 @@ public class AutoConfig extends MachineConfig {
         return storageManager.optionalGetReflectorByID(String.valueOf(reflectorId));
     }
 
-    private String intToRome(int id) {
-        return switch (id) {
-            case 1 -> "I";
-            case 2 -> "II";
-            case 3 -> "III";
-            case 4 -> "IV";
-            case 5 -> "V";
-            default -> throw new IllegalStateException("Unexpected value: " + id);
-        };
-    }
 
     @Override
     public Engine configureAndGetEngine() {
-        int rotorsCount = 3; // You can change this value as needed
+        int rotorsCount = storageManager.getRotorsCount();
         List<Rotor> rotors = getRandomRotors(rotorsCount);
         List<Character> positions = generateRandomPositions(rotorsCount);
         storageManager.setOriginalPosition(positions);
@@ -73,6 +63,6 @@ public class AutoConfig extends MachineConfig {
         rotorsManagers manager = new rotorsManagers(rotors.toArray(new Rotor[0]));
         List<Integer> indexOfPositions = manager.MappingInputCharPositionByRightColumnToIndex(positions);
         manager.setRotorsPosition(indexOfPositions);
-        return new Engine(reflector, manager, storageManager.getABC());
+        return new Engine(rotorsCount, reflector, manager, storageManager.getABC());
     }
 }
