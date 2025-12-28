@@ -95,7 +95,6 @@ public class MachineManager {
             throw new UnsupportedOperationException("Engine Not Configured Yet - Make Order 3/4 First");
         }
         System.out.print("Write the string you want to encode/decode:\n");
-        System.out.print("Write the string you want to encode/decode:\n");
         String input = scanner.nextLine().trim().toUpperCase();
         // start measure time
         long start = System.nanoTime();
@@ -202,6 +201,9 @@ public class MachineManager {
                 '>' +
                 '<' +
                 buildReflectorString() +
+                '>' +
+                '<' +
+                buildPlugboardString() +
                 '>';
 
     }
@@ -230,13 +232,19 @@ public class MachineManager {
         for (int i = index; i >= 0; i--) {
             sb.append(original ? originalPosition.get(i) : SM.getABC().charAt(rotors[i].getPosition()));
             sb.append('(');
-            int res = rotors[i].getNoche() - (original ? Utils.charToIndex(originalPosition.get(i), SM.getABC()) : rotors[i].getPosition());
+            int res = rotors[i].getNoche()
+                    - (original ? Utils.charToIndex(originalPosition.get(i), SM.getABC()) : rotors[i].getPosition());
             sb.append(Utils.normalize(res, rotors[i].sizeABC));
             sb.append(')');
             sb.append(',');
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+
+    public String buildPlugboardString() {
+        String config = enigmaMachine.getEngine().getPlugboard().getConfigString();
+        return config.isEmpty() ? "" : config;
     }
 
     public void setEnigmaMachine(Machine newEnigma) {
