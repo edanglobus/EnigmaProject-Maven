@@ -1,8 +1,8 @@
 package software;
 
-
 import hardware.engine.Engine;
 import hardware.engine.rotorsManagers;
+import hardware.parts.Plugboard;
 import hardware.parts.Reflector;
 import hardware.parts.Rotor;
 
@@ -50,29 +50,61 @@ public class AutoConfig extends MachineConfig {
         return storageManager.optionalGetReflectorByID(String.valueOf(reflectorId));
     }
 
-    private String intToRome(int id) {
-        return switch (id) {
-            case 1 -> "I";
-            case 2 -> "II";
-            case 3 -> "III";
-            case 4 -> "IV";
-            case 5 -> "V";
-            default -> throw new IllegalStateException("Unexpected value: " + id);
-        };
+    private Plugboard getRandomPlugboard() {
+        String abc = storageManager.getABC();
+        List<Character> availableChars = new ArrayList<>();
+
+        // Add all characters to available pool
+        for (char c : abc.toCharArray()) {
+            availableChars.add(c);
+        }
+
+        // Randomly decide how many pairs to create (0 to half the alphabet size)
+        int maxPairs = abc.length() / 2;
+        int numPairs = getRandomIntInRange(0, maxPairs);
+
+        StringBuilder pairString = new StringBuilder();
+
+        for (int i = 0; i < numPairs; i++) {
+            if (availableChars.size() < 2) {
+                break; // Not enough characters left
+            }
+
+            // Pick two random characters
+            int index1 = getRandomIntInRange(0, availableChars.size() - 1);
+            char char1 = availableChars.remove(index1);
+
+            int index2 = getRandomIntInRange(0, availableChars.size() - 1);
+            char char2 = availableChars.remove(index2);
+
+            pairString.append(char1).append(char2);
+        }
+
+        // If no pairs generated, return identity mapping
+        if (pairString.length() == 0) {
+            return new Plugboard(abc);
+        }
+
+        // Convert pair format to pipe format and create plugboard
+        String pipeFormat = Plugboard.parsePairFormat(pairString.toString());
+        return new Plugboard(abc, pipeFormat);
     }
 
     @Override
     public Engine configureAndGetEngine() {
-        int rotorsCount = 3; // You can change this value as needed
+        int rotorsCount = storageManager.getRotorsCount();
         List<Rotor> rotors = getRandomRotors(rotorsCount);
         List<Character> positions = generateRandomPositions(rotorsCount);
         storageManager.setOriginalPosition(positions);
         Reflector reflector = getRandomReflector();
 
-
         rotorsManagers manager = new rotorsManagers(rotors.toArray(new Rotor[0]));
         List<Integer> indexOfPositions = manager.MappingInputCharPositionByRightColumnToIndex(positions);
         manager.setRotorsPosition(indexOfPositions);
-        return new Engine(reflector, manager, storageManager.getABC());
+
+        // Create random plugboard configuration
+        Plugboard plugboard = getRandomPlugboard();
+
+        return new Engine(rotorsCount, reflector, manager, plugboard, storageManager.getABC());
     }
 }

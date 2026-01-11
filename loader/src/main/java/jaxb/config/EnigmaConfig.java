@@ -7,6 +7,9 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EnigmaConfig {
 
+    @XmlAttribute(name = "rotors-count")
+    private int rotorsCount;
+
     @XmlElement(name = "ABC")
     private String alphabet;
 
@@ -20,6 +23,14 @@ public class EnigmaConfig {
 
     // JAXB needs a no-arg constructor
     public EnigmaConfig() {}
+
+    public int getRotorsCount() {
+        return rotorsCount;
+    }
+
+    public void setRotorsCount(int rotorsCount) {
+        this.rotorsCount = rotorsCount;
+    }
 
     public String getAlphabet() {
         return alphabet != null ? alphabet.trim() : null;

@@ -2,6 +2,7 @@ package software;
 
 import hardware.engine.Engine;
 import hardware.engine.rotorsManagers;
+import hardware.parts.Plugboard;
 import hardware.parts.Reflector;
 import hardware.parts.Rotor;
 
@@ -24,7 +25,7 @@ public class ManualConfig extends MachineConfig {
         for (String part : parts) {
             int rotorId = Integer.parseInt(part);
             if (usedRotors.contains(rotorId)) {
-                throw new IllegalStateException ("Cannot build enigma machine with duplicate rotors");
+                throw new IllegalStateException("Cannot build enigma machine with duplicate rotors");
             }
             usedRotors.add(rotorId);
             rotors.add(storageManager.optionalGetRotorByID(rotorId));
@@ -47,9 +48,27 @@ public class ManualConfig extends MachineConfig {
     private List<Character> breakPositionString(String positions) {
         // Returns IntStream
         // Cast int to Character
-        return new ArrayList<>(positions.chars()              // Returns IntStream
-                .mapToObj(c -> (char) c)           // Cast int to Character
+        return new ArrayList<>(positions.chars() // Returns IntStream
+                .mapToObj(c -> (char) c) // Cast int to Character
                 .toList().reversed());
+    }
+
+    private Plugboard askPlugboard() {
+        System.out.println(
+                "Enter plugboard configuration (consecutive pairs like 'ADZXCV' for A-D, Z-X, C-V connections).");
+        System.out.println("Press ENTER for no plugboard connections:");
+        String input = sc.nextLine().trim().toUpperCase();
+
+        if (input.isEmpty()) {
+            return new Plugboard(storageManager.getABC());
+        }
+
+        try {
+            String pipeFormat = Plugboard.parsePairFormat(input);
+            return new Plugboard(storageManager.getABC(), pipeFormat);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid plugboard configuration: " + e.getMessage());
+        }
     }
 
     @Override
@@ -62,11 +81,13 @@ public class ManualConfig extends MachineConfig {
 
         storageManager.setOriginalPosition(positions);
         Reflector reflector = askReflector();
+        Plugboard plugboard = askPlugboard();
 
-
+        int rotorsCount = storageManager.getRotorsCount();
         rotorsManagers manager = new rotorsManagers(rotors.toArray(new Rotor[0]));
         List<Integer> indexOfPositions = manager.MappingInputCharPositionByRightColumnToIndex(positions);
         manager.setRotorsPosition(indexOfPositions);
-        return new Engine(reflector, manager, storageManager.getABC());
+
+        return new Engine(rotorsCount, reflector, manager, plugboard, storageManager.getABC());
     }
 }
