@@ -136,7 +136,7 @@ public class MachineManager {
             throw new UnsupportedOperationException("Engine Not Configured Yet - Make Order 3/4 First");
         }
 
-        System.out.print("Enter file name for BINARY save: ");
+        System.out.print("Enter file name for BINARY save:");
         String filePathName = scanner.nextLine().trim();
         String finalFileName = filePathName.endsWith(".dat") ? filePathName : filePathName + ".dat";
         Path filePath = Paths.get(finalFileName);
