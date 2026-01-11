@@ -60,6 +60,12 @@ public class StorageManager implements software.StorageProvider {
     }
 
     private boolean validateSupply() {
+        if (EC.getRotorsCount() > EC.getRotors().size()) {
+            throw new IllegalArgumentException("Rotors count in config is larger than available rotors.");
+        }
+        if (EC.getRotorsCount() < 1) {
+            throw new IllegalArgumentException("Rotors count in config must be at least 1.");
+        }
         return validateABCLength() && validatePartsConfig() && EC.validateWires();
     }
 
